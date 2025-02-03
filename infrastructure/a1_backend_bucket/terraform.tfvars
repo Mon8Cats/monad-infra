@@ -1,6 +1,6 @@
 
-project_id = "value"
-#project_number = ""
+project_id = "cata-morph"
+project_number = "205875226727"
 region = "us-central1"
 
 api_list  = [
@@ -9,4 +9,4 @@ api_list  = [
     "storage.googleapis.com",
 ]
 
-bucket_name_unique = "srw-run-tf-backend" # globally unique name
+bucket_name_unique = "cata-morph-gke" # globally unique name
