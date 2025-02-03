@@ -14,18 +14,10 @@ variable "region" {
   #default = "us-central1"
 }
 
-
 variable "api_list" {
   description = "A list of APIs"
   type        = list(string)
 }
-
-/*
-variable "bucket_name_unique" {
-  description = "The bucket for TF backend"
-  type        = string
-}
-*/
 
 variable "secret_id_github" {
   description = "The Github Token Secret Id"
@@ -51,4 +43,3 @@ variable "github_account" {
   description = "The region for the resources"
   type        = string
 }
-

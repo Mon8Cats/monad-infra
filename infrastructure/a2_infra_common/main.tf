@@ -17,7 +17,6 @@ locals {
 
 }
 
-
 module "service_apis" {
   source                  = "../../modules/a1_service_apis"
   project_id  = var.project_id
@@ -29,16 +28,12 @@ resource "google_project_service" "iam" {
   service = "iam.googleapis.com"
 }
 
-
 module "secret_github_token" {
   source  = "../e1_secret_manager"
   project_id          = var.project_id
   secret_id         = var.secret_id_github
   secret_data = var.secret_data_github
 }
-
-
-
 
 
 module "github_token_secret_access_cloud_build_sa" {
@@ -48,7 +43,6 @@ module "github_token_secret_access_cloud_build_sa" {
 
   depends_on = [ module.secret_github_token ]
 }
-
 
 module "github_connection" {
   source = "../../modules/g1_cloudbuild_github_connection"
