@@ -29,15 +29,17 @@ resource "google_project_service" "iam" {
 }
 
 module "secret_github_token" {
-  source  = "../e1_secret_manager"
+  source  = "../../modules/e1_secret_manager"
   project_id          = var.project_id
   secret_id         = var.secret_id_github
   secret_data = var.secret_data_github
+
+  depends_on = [ module.service_apis ]  
 }
 
 
 module "github_token_secret_access_cloud_build_sa" {
-  source  = "../e3_secret_iam_member"
+  source  = "../../modules/e3_secret_iam_member"
   secret_id = var.secret_id_github
   service_account_email = local.cloud_build_service_account_email
 
@@ -52,7 +54,7 @@ module "github_connection" {
   secret_id_github = var.secret_id_github
   connection_name_github = var.connection_name_github
 
-  depends_on = [ module.secret_manager_wrapper ]
+  depends_on = [ module.secret_github_token ]
 }
 
 module "workload_identity_pool" {

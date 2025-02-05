@@ -13,8 +13,8 @@ terraform {
   }
 
   backend "gcs" {
-    bucket  = "spn-run-tf-backend"
-    prefix  = "terraform/state/infra" 
+    bucket  = "cata-morph-gke"
+    prefix  = "infra/cluster-pipeline" 
   }
 }
 
