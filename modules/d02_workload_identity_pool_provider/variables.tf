@@ -36,3 +36,8 @@ variable "attribute_mapping" {
   description = "Mapping of external identity attributes to GCP attributes"
   type        = map(string)
 }
+
+variable "github_owner_repo" {
+  description = "GitHub repository in format OWNER/REPO"
+  type        = string
+}

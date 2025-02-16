@@ -12,7 +12,7 @@ module "cloud_build_connection" {
 resource "google_cloudbuildv2_connection" "github_connection" {
   name       = var.connection_name
   project    = var.project_id
-  location   = var.region
+  location   = var.location
 
   github_config {
     app_installation_id = var.github_app_installation_id

@@ -77,3 +77,9 @@ variable "cicd_sa_role_list_infra" {
   type        = list(string)
   description = "A list of service account roles"
 }
+
+variable "wip_id" {
+  type        = string
+  description = "The ID of the service account to create (must be unique within the project)"
+
+}

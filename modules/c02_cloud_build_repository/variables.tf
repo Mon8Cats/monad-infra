@@ -3,10 +3,10 @@ variable "project_id" {
   type        = string
 }
 
-variable "region" {
-  description = "The region for the Cloud Build repository link"
+variable "location" {
+  description = "Location for the Workload Identity Pool"
   type        = string
-  default     = "us-central1"
+  default     = "global"
 }
 
 variable "connection_name" {
@@ -18,6 +18,8 @@ variable "repo_name" {
   description = "The name of the GitHub repository to link"
   type        = string
 }
+
+
 
 variable "repo_owner" {
   description = "The owner (username or organization) of the GitHub repository"

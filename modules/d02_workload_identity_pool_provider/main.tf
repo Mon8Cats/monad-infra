@@ -8,6 +8,7 @@ resource "google_iam_workload_identity_pool_provider" "my_provider" {
   description  = var.provider_description
 
   attribute_mapping = var.attribute_mapping
+   attribute_condition = "assertion.repository == \"${var.github_owner_repo}\""
 
   oidc {
     issuer_uri = var.issuer_uri
