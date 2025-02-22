@@ -20,7 +20,7 @@ variable "api_list" {
   type        = list(string)
 }
 
-variable "bucket_name_unique" {
+variable "bucket_name" {
   description = "The bucket for TF backend"
   type        = string
 }

@@ -10,7 +10,7 @@ module "terraform_backend_storage_bucket" {
   source                  = "../../modules/b1_storage_bucket"
   project_id              = var.project_id
   location                = "US"
-  bucket_name             = var.bucket_name_unique
+  bucket_name             = var.bucket_name
   storage_class           = "STANDARD"
   force_destroy           = true
 
