@@ -23,13 +23,13 @@ variable "storage_class" {
 variable "force_destroy" {
   description = "Set to true to allow Terraform to delete the bucket without confirmation"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "enable_versioning" {
   description = "Enable object versioning in the bucket"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "uniform_bucket_level_access" {

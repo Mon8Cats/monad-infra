@@ -14,7 +14,7 @@ module "gcs_bucket" {
 }
 */
 
-
+/*
 terraform {
   required_providers {
     google = {
@@ -23,6 +23,7 @@ terraform {
     }
   }
 }
+*/
 
 resource "google_storage_bucket" "bucket" {
   name          = var.bucket_name
