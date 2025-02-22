@@ -12,6 +12,7 @@ module "enable_gcp_apis" {
 }
 */
 
+/*
 terraform {
   required_providers {
     google = {
@@ -20,7 +21,7 @@ terraform {
     }
   }
 }
-
+*/
 resource "google_project_service" "enabled_apis" {
   for_each = toset(var.apis)
 

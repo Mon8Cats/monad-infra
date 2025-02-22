@@ -15,7 +15,7 @@ variable "region" {
 }
 
 
-variable "api_list" {
+variable "apis" {
   description = "A list of APIs"
   type        = list(string)
 }

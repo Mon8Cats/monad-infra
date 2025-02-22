@@ -3,7 +3,7 @@ project_id = "dole-dole"
 project_number = "205875226727"
 region = "us-central1"
 
-api_list  = [
+apis  = [
     "storage.googleapis.com",
 ]
 
