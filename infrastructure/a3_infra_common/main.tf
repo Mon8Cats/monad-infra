@@ -12,10 +12,11 @@ locals {
 }
 
 module "service_apis" {
-  source                  = "../../modules/a1_service_apis"
+  source                  = "../../modules/a01_service_apis"
   project_id  = var.project_id
-  api_services = var.api_list
+  apis = var.apis
 }
+
 
 /*
 resource "google_project_service" "iam" {

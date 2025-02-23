@@ -4,7 +4,7 @@ region = "us-central1"
 credentials_file  = "/home/dole-dole/credentials/sa-terraform.json"
 sa-terraform = "sa-terraform"
 
-api_list  = [
+apis  = [
     "cloudresourcemanager.googleapis.com",
     "secretmanager.googleapis.com", 
     "storage.googleapis.com",

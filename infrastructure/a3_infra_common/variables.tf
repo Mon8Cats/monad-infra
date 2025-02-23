@@ -14,7 +14,7 @@ variable "region" {
   #default = "us-central1"
 }
 
-variable "api_list" {
+variable "apis" {
   description = "A list of APIs"
   type        = list(string)
 }
