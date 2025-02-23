@@ -10,6 +10,10 @@ apis  = [
     "iam.googleapis.com"
 ]
 
-bucket_name = "dole-dole" # globally unique name
-
-
+service_account_id = "sa-terraform" # 6-30 characters
+service_account_display_name = "Terraform Service Account"
+service_account_roles = [ 
+    "roles/secretmanager.secretAccessor",
+    "roles/cloudbuild.builds.editor",
+    "roles/iam.serviceAccountUser"
+]

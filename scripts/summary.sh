@@ -1,3 +1,9 @@
+
+# create a service account key file
+gcloud iam service-accounts keys create ~/credentials/sa-terraform.json \
+  --iam-account=sa-terraform@YOUR_PROJECT_ID.iam.gserviceaccount.com
+
+
 # check wip
 gcloud iam workload-identity-pools list --project=cata-morph --location=global
 
