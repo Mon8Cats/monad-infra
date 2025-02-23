@@ -69,26 +69,21 @@ variable "repo_name" {
   type        = string
 }
 
+/*
 variable "repo_type" {
   description = "Type of repository (GITHUB, GITHUB_ENTERPRISE, BITBUCKET_CLOUD, BITBUCKET_SERVER)"
   type        = string
   default     = "GITHUB"
 }
+*/
 
-
+/*
 variable "branch_name" {
   description = "Branch to trigger builds (e.g., main)"
   type        = string
   default     = "main"
 }
-
-/*
-variable "github_account_repo" {
-  description = "GitHub repository in format OWNER/REPO"
-  type        = string
-}
 */
-
 
 variable "issuer_uri" {
   description = "OIDC Issuer URI (e.g., GitHub Actions: 'https://token.actions.githubusercontent.com')"
@@ -96,10 +91,12 @@ variable "issuer_uri" {
   default = "https://token.actions.githubusercontent.com"
 }
 
+
 variable "attribute_mapping" {
   description = "Mapping of external identity attributes to GCP attributes"
   type        = map(string)
 }
+
 
 /*
 variable "github_owner_repo" {
@@ -108,11 +105,13 @@ variable "github_owner_repo" {
 }
 */
 
+/*
 variable "substitutions" {
   description = "Map of build-time environment variables"
   type        = map(string)
   default     = {}
 }
+*/
 
 variable "connection_name" {
   description = "The name of the existing Cloud Build connection"

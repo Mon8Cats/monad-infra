@@ -34,7 +34,7 @@ resource "google_project_iam_custom_role" "cloudbuild_connection_creator" {
   permissions = [
     "cloudbuild.connections.create",
     "cloudbuild.connections.get",
-    "cloudbuild.connections.update"
+    "cloudbuild.connections.update",
   ]
 }
 
@@ -45,4 +45,49 @@ resource "google_project_iam_member" "custom_cloudbuild_connection_binding" {
   member  = "serviceAccount:${module.terraform_service_account.service_account_email}"
 
   depends_on = [ module.terraform_service_account, google_project_iam_custom_role.cloudbuild_connection_creator ]
+}
+
+
+resource "google_project_iam_custom_role" "storage_iam_updater" {
+  role_id     = "StorageIamUpdater"
+  title       = "Storage IAM Updater"
+  description = "Custom role to allow updating storage bucket IAM policies"
+  project     = var.project_id
+
+  permissions = [
+    "storage.buckets.getIamPolicy",
+    "storage.buckets.setIamPolicy",
+  ]
+}
+
+resource "google_project_iam_member" "custom_storage_iam_updater_binding" {
+  project = var.project_id
+  role    = google_project_iam_custom_role.storage_iam_updater.name
+  member  = "serviceAccount:${module.terraform_service_account.service_account_email}"
+
+  depends_on = [ module.terraform_service_account, google_project_iam_custom_role.storage_iam_updater ]
+}
+
+
+resource "google_project_iam_custom_role" "cloudbuild_repo_creator" {
+  role_id     = "CloudBuildRepoCreator"
+  title       = "Cloud Build Repository Creator"
+  description = "Custom role to allow creating Cloud Build repositories"
+  project     = var.project_id
+
+  permissions = [
+    "cloudbuild.repositories.create",
+    "cloudbuild.repositories.get",
+    "cloudbuild.repositories.list",
+    "cloudbuild.repositories.update",
+    "cloudbuild.repositories.delete",
+  ]
+}
+
+resource "google_project_iam_member" "custom_cloudbuild_repo_binding" {
+  project = var.project_id
+  role    = google_project_iam_custom_role.cloudbuild_repo_creator.name
+  member  = "serviceAccount:${module.terraform_service_account.service_account_email}"
+
+  depends_on = [ module.terraform_service_account, google_project_iam_custom_role.cloudbuild_repo_creator ]
 }

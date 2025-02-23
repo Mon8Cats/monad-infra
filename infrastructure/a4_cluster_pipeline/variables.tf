@@ -31,11 +31,6 @@ variable "secret_id_github" {
   description = "The Github Token Secret Id"
   type        = string
 }
-variable "secret_data_github" {
-  description = "The Github Token Secret value"
-  type        = string
-}
-
 
 variable "connection_name_github" {
   description = "ID of the GitHub token secret in Secret Manager"
@@ -62,11 +57,13 @@ variable "github_repo_infra" {
   description = "The region for the resources"
   type        = string
 }
+
+/*
 variable "repo_name_gcp_infra" {
   description = "The region for the resources"
   type        = string
 }
-
+*/
 variable "cicd_sa_id_infra" {
   type        = string
   description = "The ID of the service account to create (must be unique within the project)"
@@ -78,11 +75,13 @@ variable "cicd_sa_role_list_infra" {
   description = "A list of service account roles"
 }
 
+/*
 variable "wip_id" {
   type        = string
   description = "The ID of the service account to create (must be unique within the project)"
 
 }
+*/
 
 variable "credentials_file" {
   description = "Path to the service account key file used for authentication."

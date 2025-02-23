@@ -18,7 +18,8 @@ service_account_roles = [
     #"roles/cloudbuild.admin", # cloudbuild.builds.builder, cloudbuild.connections.create
     #"roles/cloudbuild.connections.create", # permission not a role
     "roles/cloudbuild.builds.builder",
-    "roles/iam.serviceAccountUser",
+    #"roles/iam.serviceAccountUser",
+    "roles/iam.serviceAccountAdmin",
     "roles/serviceusage.serviceUsageAdmin", # serviceUsageConsumer",
     "roles/iam.workloadIdentityPoolAdmin",
 ]

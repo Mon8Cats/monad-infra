@@ -28,11 +28,12 @@ resource "google_project_service" "enabled_apis" {
 
 }
 
-resource "google_service_account" "cicd_service_accounts" {
+resource "google_service_account" "cicd_service_account" {
   account_id   = var.service_account_id
   display_name = "CI/CD Service Account"
   project      = var.project_id
 }
+
 
 resource "google_secret_manager_secret_iam_binding" "github_token_access" {
   project   = var.project_id
@@ -60,7 +61,7 @@ resource "google_storage_bucket" "my_bucket" {
   }
 }
 
-resource "google_storage_bucket_iam_binding" "binding" {
+resource "google_storage_bucket_iam_binding" "bucket_binding" {
   bucket = var.log_bucket_name
   role   = "roles/storage.objectAdmin"
 
@@ -68,6 +69,7 @@ resource "google_storage_bucket_iam_binding" "binding" {
     "serviceAccount:${local.service_account_email}"
   ]
 }
+
 
 
 resource "google_iam_workload_identity_pool_provider" "github_provider" {
@@ -87,17 +89,23 @@ resource "google_iam_workload_identity_pool_provider" "github_provider" {
   attribute_condition = "assertion.repository == \"${var.github_account}/${var.repo_name}\""
 }
 
+
 resource "google_service_account_iam_binding" "workload_identity_bindings" {
   service_account_id = google_service_account.cicd_service_account.name 
   # "projects/${var.project_id}/serviceAccounts/${var.service_account_email}"
   role  = "roles/iam.workloadIdentityUser"
 
   members = [
-    "principalSet://iam.googleapis.com/projects/${var.project_id}/locations/global/workloadIdentityPools/${var.wip_id}/attribute.repository/${var.github_account}/${var.repo_name}"
+    "principalSet://iam.googleapis.com/projects/${var.project_number}/locations/global/workloadIdentityPools/${var.wip_id}/attribute.repository/${var.github_account}/${var.repo_name}"   
   ]
 }
 
+// projects/dole-dole/locations/us-central1/connections/github-connection 
+resource "google_cloudbuildv2_repository" "my_repository" {
+  name = var.repo_name
+  location = var.location
+  parent_connection = "projects/${var.project_id}/locations/${var.location}/connections/${var.connection_name}"
+  remote_uri = "https://github.com/${var.github_account}/${var.repo_name}.git"
+}
 
 
-# service account IAM binding : Secret Manager (github token), WIP provider
-#included_files = ["**/*"]  # Monitor all files for changes

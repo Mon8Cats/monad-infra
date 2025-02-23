@@ -1,14 +1,14 @@
-
+// The WorkloadIdentityPoolProvider's display name must be less than or equal to 32 characters.
 locals {
   wip_name_unique = "github-pool"
   wip_id = "${local.wip_name_unique}-${var.project_number}"
-  
+
   pipe_name = "infra"
   sa_id = "sa-${local.pipe_name}"
   log_bucket = "log-${var.project_number}-${local.pipe_name}"
   wip_provider_id = "wip-pid-${local.pipe_name}-${var.project_number}"
-  wip_provider_description = "Workload Identity Pool Provider for ${var.repo_name_gcp_infra}"
-  wip_provider_display_name = "Workload Identity Pool Provider for ${local.pipe_name}"
+  wip_provider_description = "Pool provider for ${var.github_repo_infra}"
+  wip_provider_display_name = "wipp-${local.pipe_name}"
   github_acct_repo_infra = "${var.github_account}/${var.github_repo_infra}"
   github_repo_uri_infra = "https://github.com/${local.github_acct_repo_infra}.git"
 
@@ -27,6 +27,16 @@ locals {
   }
 }
 
+# the binding is temporary? should do again for every pipeline?
+resource "google_secret_manager_secret_iam_member" "cloudbuild_secret_accessor" {
+  secret_id = var.secret_id_github
+  project   = var.project_id
+  role      = "roles/secretmanager.secretAccessor"
+  member    =  "serviceAccount:service-${var.project_number}@gcp-sa-cloudbuild.iam.gserviceaccount.com"
+
+}
+
+
 module "cicd_pipeline_infra" {
   source = "../../modules/x02_cloudbuild_cicd_pipeline"
 
@@ -37,16 +47,13 @@ module "cicd_pipeline_infra" {
   service_account_id = local.sa_id
   secret_id_github = var.secret_id_github
   log_bucket_name = local.log_bucket
-  wip_id = var.wip_id
+  wip_id = local.wip_id
   wip_provider_id = local.wip_provider_id
   wip_provider_description = local.wip_provider_description
   wip_provider_display_name = local.wip_provider_display_name
   github_account = var.github_account
   repo_name = var.github_repo_infra
-  repo_type = "GITHUB"
-  branch_name = "*"
   issuer_uri = "https://token.actions.githubusercontent.com"
-  substitutions = local.substitutions
   attribute_mapping = local.attribute_mapping
   connection_name = var.connection_name_github
 }

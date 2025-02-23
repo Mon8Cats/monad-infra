@@ -93,7 +93,7 @@ resource "google_service_account_iam_binding" "workload_identity_bindings" {
   role  = "roles/iam.workloadIdentityUser"
 
   members = [
-    "principalSet://iam.googleapis.com/projects/${var.project_id}/locations/global/workloadIdentityPools/${var.wip_id}/attribute.repository/${var.github_account}/${var.repo_name}"
+    "principalSet://iam.googleapis.com/projects/${var.project_number}/locations/global/workloadIdentityPools/${var.wip_id}/attribute.repository/${var.github_account}/${var.repo_name}"
   ]
 }
 
@@ -130,3 +130,32 @@ resource "google_cloudbuild_trigger" "github_trigger" {
 
 # service account IAM binding : Secret Manager (github token), WIP provider
 #included_files = ["**/*"]  # Monitor all files for changes
+
+
+/*
+resource "google_cloudbuild_trigger" "github_trigger" {
+  project         = var.project_id
+  location        = var.location
+  name            = "github-trigger"
+  description     = "Trigger build on push to the linked GitHub repo"
+  service_account = google_service_account.cicd_service_account.email
+
+
+  github {
+    owner        = var.github_account
+    name         = var.repo_name
+    push {
+      branch = "main"
+    }
+  }
+
+
+  trigger_template {
+    repo_name   = google_cloudbuildv2_repository.my_repository.name
+    branch_name = "main"
+    
+  }
+
+  filename    = "cloudbuild.yaml"
+}
+*/

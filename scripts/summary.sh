@@ -1,4 +1,23 @@
 
+gcloud beta builds connections list --project=dole-dole --region=us-central1
+  NAME: github-connection
+  INSTALLATION_STATE: COMPLETE
+  DISABLED: Enabled
+
+gcloud beta builds repositories list --project=dole-dole --region=us-central1 --connection=github-connection
+  NAME: monad-infra
+  REMOTE_URI: https://github.com/Mon8Cats/monad-infra.git
+
+
+
+ $ gcloud iam workload-identity-pools list --project=dole-dole --location=global
+projects/dole-dole/locations/us-central1/connections/github-connection 
+
+
+ log-846737158627-infra
+
+gcloud config set project dole-dole
+
 gcloud auth activate-service-account --key-file=/path/to/your/service_account_key.json
 gcloud auth list
 
@@ -16,6 +35,11 @@ gcloud projects get-iam-policy dole-dole \
   --flatten="bindings[].members" \
   --format="table(bindings.role)" \
   --filter="bindings.members:serviceAccount:sa-terraform@dole-dole.iam.gserviceaccount.com"
+
+gcloud projects get-iam-policy dole-dole \
+  --flatten="bindings[].members" \
+  --format="table(bindings.role)" \
+  --filter="bindings.members:serviceAccount:service-846737158627@gcp-sa-cloudbuild.iam.gserviceaccount.com"
 
 
 # create a service account key file
