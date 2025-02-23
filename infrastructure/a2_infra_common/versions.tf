@@ -13,7 +13,7 @@ terraform {
   }
 
   backend "gcs" {
-    bucket  = "cata-morph-gke"
+    bucket  = "dole-dole"
     prefix  = "infra/common" 
   }
 }

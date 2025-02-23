@@ -17,3 +17,11 @@ module "terraform_backend_storage_bucket" {
   depends_on   = [module.service_apis]
 }
 
+module "terraform_service_account" {
+  source                  = "../../modules/a03_service_account"
+  project_id              = var.project_id
+  service_account_id    = var.service_account_id
+  service_account_display_name = var.service_account_display_name
+
+  depends_on   = [module.terraform_backend_storage_bucket]
+}

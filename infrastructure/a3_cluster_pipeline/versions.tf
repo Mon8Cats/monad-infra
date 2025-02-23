@@ -13,8 +13,8 @@ terraform {
   }
 
   backend "gcs" {
-    bucket  = "cata-morph-gke"
-    prefix  = "infra/cluster-pipeline" 
+    bucket  = "dole-dole"
+    prefix  = "infra/cluster-pipe" 
   }
 }
 

@@ -8,3 +8,7 @@ apis  = [
 ]
 
 bucket_name = "dole-dole" # globally unique name
+
+
+service_account_id = "sa-tf"
+service_account_display_name = "Terraform Service Account"
