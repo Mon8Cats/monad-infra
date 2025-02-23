@@ -1,17 +1,19 @@
-# Input Variables
-# GCP Project
-variable "gcp_project" {
-  description = "Project in which GCP Resources to be created"
-  type = string
-  default = "kdaida123"
+variable "project_id" {
+  description = "Project ID for the GCP project"
+  type        = string
 }
 
-# GCP Region
-variable "gcp_region" {
+variable "project_number" {
+    description = "Project Number for the GCP project"
+  type        = string
+}
+
+variable "region" {
   description = "Region in which GCP Resources to be created"
   type = string
-  default = "us-east1"
+  #default = "us-central1"
 }
+
 
 # Environment Variable
 variable "environment" {
@@ -21,7 +23,7 @@ variable "environment" {
 }
 
 # Business Division
-variable "business_divsion" {
+variable "business_division" {
   description = "Business Division in the large organization this Infrastructure belongs"
   type = string
   default = "sap"

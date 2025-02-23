@@ -1,13 +1,13 @@
 # Resource: Cloud Router
 resource "google_compute_router" "cloud_router" {
-  name    = "${local.name}-${var.gcp_region}-cloud-router"
+  name    = "${local.name}-${var.region}-cloud-router"
   network = google_compute_network.myvpc.id
-  region  = var.gcp_region
+  region  = var.region
 }
 
 # Resource: Cloud NAT
 resource "google_compute_router_nat" "cloud_nat" {
-  name   = "${local.name}-${var.gcp_region}-cloud-nat"
+  name   = "${local.name}-${var.region}-cloud-nat"
   router = google_compute_router.cloud_router.name
   region = google_compute_router.cloud_router.region
   nat_ip_allocate_option = "AUTO_ONLY"

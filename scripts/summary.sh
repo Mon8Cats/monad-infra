@@ -1,4 +1,10 @@
 
+gcloud iam workload-identity-pools providers list \
+  --project=dole-dole \
+  --location=global \
+  --workload-identity-pool=github-pool-846737158627
+
+
 gcloud beta builds connections list --project=dole-dole --region=us-central1
   NAME: github-connection
   INSTALLATION_STATE: COMPLETE
@@ -10,7 +16,7 @@ gcloud beta builds repositories list --project=dole-dole --region=us-central1 --
 
 
 
- $ gcloud iam workload-identity-pools list --project=dole-dole --location=global
+ gcloud iam workload-identity-pools list --project=dole-dole --location=global
 projects/dole-dole/locations/us-central1/connections/github-connection 
 
 
