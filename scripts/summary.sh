@@ -1,7 +1,16 @@
+# list roles
+gcloud projects get-iam-policy dole-dole \
+  --flatten="bindings[].members" \
+  --format="table(bindings.role)" \
+  --filter="bindings.members:serviceAccount:sa-terraform@dole-dole.iam.gserviceaccount.com"
+
 
 # create a service account key file
 gcloud iam service-accounts keys create ~/credentials/sa-terraform.json \
   --iam-account=sa-terraform@YOUR_PROJECT_ID.iam.gserviceaccount.com
+
+gcloud iam service-accounts keys create ~/credentials/sa-terraform.json \
+  --iam-account=sa-terraform@dole-dole.iam.gserviceaccount.com
 
 
 # check wip

@@ -19,11 +19,11 @@ variable "api_list" {
   type        = list(string)
 }
 
-variable "secret_id_github" {
+variable "access_token_secret_id" {
   description = "The Github Token Secret Id"
   type        = string
 }
-variable "secret_data_github" {
+variable "access_token_secret_value" {
   description = "The Github Token Secret value"
   type        = string
 }
@@ -41,5 +41,15 @@ variable "app_installation_id_github" {
 
 variable "github_account" {
   description = "The region for the resources"
+  type        = string
+}
+
+variable "credentials_file" {
+  description = "Path to the service account key file used for authentication."
+  type        = string
+}
+
+variable "sa-terraform" {
+  description = "The account ID for the service account to run the terraform"
   type        = string
 }
