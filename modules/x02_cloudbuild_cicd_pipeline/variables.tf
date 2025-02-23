@@ -82,7 +82,6 @@ variable "branch_name" {
   default     = "main"
 }
 
-
 /*
 variable "github_account_repo" {
   description = "GitHub repository in format OWNER/REPO"
@@ -90,9 +89,11 @@ variable "github_account_repo" {
 }
 */
 
+
 variable "issuer_uri" {
   description = "OIDC Issuer URI (e.g., GitHub Actions: 'https://token.actions.githubusercontent.com')"
   type        = string
+  default = "https://token.actions.githubusercontent.com"
 }
 
 variable "attribute_mapping" {

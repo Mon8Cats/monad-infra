@@ -1,5 +1,8 @@
 
 locals {
+  wip_name_unique = "github-pool"
+  wip_id = "${local.wip_name_unique}-${var.project_number}"
+  
   pipe_name = "infra"
   sa_id = "sa-${local.pipe_name}"
   log_bucket = "log-${var.project_number}-${local.pipe_name}"
@@ -25,7 +28,7 @@ locals {
 }
 
 module "cicd_pipeline_infra" {
-  source = "../../modules/x01_cloudbuild_cicd_pipeline"
+  source = "../../modules/x02_cloudbuild_cicd_pipeline"
 
   project_id = var.project_id
   project_number = var.project_number
@@ -38,12 +41,11 @@ module "cicd_pipeline_infra" {
   wip_provider_id = local.wip_provider_id
   wip_provider_description = local.wip_provider_description
   wip_provider_display_name = local.wip_provider_display_name
-  github_owner = var.github_account
+  github_account = var.github_account
   repo_name = var.github_repo_infra
   repo_type = "GITHUB"
   branch_name = "*"
-  github_owner_repo = "aaa"
-  issuer_uri = "aaaa"
+  issuer_uri = "https://token.actions.githubusercontent.com"
   substitutions = local.substitutions
   attribute_mapping = local.attribute_mapping
   connection_name = var.connection_name_github

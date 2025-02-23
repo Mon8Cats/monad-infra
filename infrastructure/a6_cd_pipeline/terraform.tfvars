@@ -1,6 +1,7 @@
 project_id = "dole-dole"
-project_number = "205875226727"
+project_number = "846737158627"
 region = "us-central1"
+#credentials_file  = "/home/mon8cats3/credentials/sa-terraform.json"
 
 api_list  = [
     "cloudresourcemanager.googleapis.com",

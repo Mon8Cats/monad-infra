@@ -1,3 +1,16 @@
+
+gcloud auth activate-service-account --key-file=/path/to/your/service_account_key.json
+gcloud auth list
+
+
+
+gcloud iam test-iam-permissions "//iam.googleapis.com/projects/dole-dole/locations/global" \
+  --member="serviceAccount:sa-terraform@dole-dole.iam.gserviceaccount.com" \
+  --permissions=iam.workloadIdentityPools.create
+
+terraform state list | grep google_project_iam_member
+terraform plan -refresh=true
+
 # list roles
 gcloud projects get-iam-policy dole-dole \
   --flatten="bindings[].members" \

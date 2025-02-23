@@ -1,7 +1,7 @@
 
 locals {
   # Google-managed service agent
-  #cloud_build_service_account_email = "service-${var.project_number}@gcp-sa-cloudbuild.iam.gserviceaccount.com"
+  cloud_build_service_account_email = "service-${var.project_number}@gcp-sa-cloudbuild.iam.gserviceaccount.com"
   
   # Cloud Build default service account
   # ${var.project_number}@cloudbuild.gserviceaccount.com
@@ -35,15 +35,16 @@ module "secret_github_token" {
 }
 
 
-/*
-module "github_token_secret_access_cloud_build_sa" {
-  source  = "../../modules/e3_secret_iam_member"
-  secret_id = var.secret_id_github
-  service_account_email = local.cloud_build_service_account_email
+
+
+resource "google_secret_manager_secret_iam_member" "cloudbuild_secret_accessor" {
+  secret_id = var.access_token_secret_id
+  project   = var.project_id
+  role      = "roles/secretmanager.secretAccessor"
+  member    =  "serviceAccount:service-${var.project_number}@gcp-sa-cloudbuild.iam.gserviceaccount.com"
 
   depends_on = [ module.secret_github_token ]
 }
-*/
 
 
 module "github_connection" {
@@ -54,7 +55,7 @@ module "github_connection" {
   access_token_secret_id = var.access_token_secret_id
   connection_name = var.connection_name_github
 
-  depends_on = [ module.secret_github_token ]
+  depends_on = [ module.secret_github_token, google_secret_manager_secret_iam_member.cloudbuild_secret_accessor ]
 }
 
 module "workload_identity_pool" {

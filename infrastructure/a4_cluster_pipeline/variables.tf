@@ -83,3 +83,20 @@ variable "wip_id" {
   description = "The ID of the service account to create (must be unique within the project)"
 
 }
+
+variable "credentials_file" {
+  description = "Path to the service account key file used for authentication."
+  type        = string
+}
+
+variable "sa-terraform" {
+  description = "The account ID for the service account to run the terraform"
+  type        = string
+}
+
+/*
+variable "wip_name_unique" {
+  description = "The work load identity pool name"
+  type        = string
+}
+*/
