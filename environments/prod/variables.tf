@@ -19,7 +19,7 @@ variable "region" {
 variable "environment" {
   description = "Environment Variable used as a prefix"
   type = string
-  default = "dev"
+  default = "prod"
 }
 
 # Business Division
@@ -33,23 +33,23 @@ variable "business_division" {
 variable "subnet_ip_range" {
   description = "Subnet IP range"
   type = string
-  default = "10.128.0.0/20"
+  default = "10.139.0.0/20"
 }
 
 variable "pods_ip_range" {
   description = "Kubernetes Pods IP range"
   type = string
-  default = "10.1.0.0/21"
+  default = "10.11.0.0/21"
 }
 
 variable "services_ip_range" {
   description = "Kubernetes Services IP range"
   type = string
-  default = "10.2.0.0/21"
+  default = "10.22.0.0/21"
 }
 
 variable "master_ip_range" {
   description = "Kubernetes Master IP range"
   type = string
-  default = "10.3.0.0/28"
+  default = "10.33.0.0/28"
 }
